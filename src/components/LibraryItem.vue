@@ -24,7 +24,11 @@ export default {
   props: {
     item: Object,
     addRepair: Function,
-    addBasket: Function,
+  },
+  methods: {
+    addBasket(item){
+      this.$emit('add-to-basket', item);
+    }
   },
   computed: {
     typeOfItem(){

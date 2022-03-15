@@ -1,11 +1,8 @@
 <template>
   <div class="row">
     <div class="card-columns col-12 col-md-8">
-      <library-item v-for="(item, i) in library" :key="i" :item="item" :add-basket="item => {basket.addItem(item)}"
+      <library-item v-for="(item, i) in library" :key="i" :item="item" @add-to-basket="theItemEmitted => $emit('add-to-basket', theItemEmitted)"
                     :add-repair="item => {repairs.addItem(item); library.removeItem(item);}"></library-item>
-    </div>
-    <div class="col-12 col-md-4">
-      <library-basket :basket="basket"></library-basket>
     </div>
   </div>
 </template>
@@ -14,12 +11,10 @@
 import LibraryCollection from "@/models/LibraryCollection";
 import {Album, Book, Movie} from "@/models/LibraryItems";
 import LibraryItem from "@/components/LibraryItem";
-import BasketCollection from "@/models/BasketCollection";
-import LibraryBasket from "@/components/LibraryBasket";
 
 export default {
   name: "UniversalLibrary",
-  components: {LibraryBasket, LibraryItem},
+  components: {LibraryItem},
   props: {},
   data() {
     return {
@@ -31,8 +26,6 @@ export default {
           .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12))
           .addItem(new Album('A Thousand Suns', 'Linkin Park', 15)),
       repairs: new LibraryCollection(),
-      basket: new BasketCollection()
-          .addItem(new Book('Seductive Interaction Design', 234)),
     }
   },
 }

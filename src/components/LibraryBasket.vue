@@ -7,7 +7,7 @@
     <div class="row">
       <basket-item v-for="(item, i) in basket" :key="i" :item="item"></basket-item>
     </div>
-    <div claass="row">
+    <div class="row">
         <button class="btn btn-success mt-3">Check Out</button>
     </div>
   </div>
