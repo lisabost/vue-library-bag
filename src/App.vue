@@ -16,8 +16,8 @@ import LibraryBasket from "@/components/LibraryBasket";
 export default {
   name: 'App',
   components: {
-    LibraryBasket,
     UniversalLibrary,
+    LibraryBasket
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     addToBasket: function(item){
-      this.basket.addItem(item);
+      this.basket.addItemToBasket(item);
       // console.log(this.basket);
       // console.log(this.basket[0]);
     }

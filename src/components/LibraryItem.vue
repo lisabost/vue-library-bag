@@ -9,7 +9,7 @@
       <button class="btn btn-caution m-2" v-else @click="item.checkIn()">Check In</button>
       <button class="btn btn-danger m-2" @click="item.remove()">Remove</button>
       <button class="btn btn-secondary m-2" @click="addRepair(item)">Repair</button>
-      <button class="btn btn-caution m-2" @click="addBasket(item)">Add to Basket</button>
+      <button class="btn btn-primary m-2" @click="addBasket(item)">Add to Basket</button>
     </div>
   </div>
 </template>

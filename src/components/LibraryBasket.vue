@@ -8,7 +8,7 @@
       <basket-item v-for="(item, i) in basket" :key="i" :item="item"></basket-item>
     </div>
     <div class="row">
-        <button class="btn btn-success mt-3">Check Out</button>
+        <button class="btn btn-success mt-3" @click="ohShit">Check Out</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,13 @@ export default {
   name: "LibraryBasket",
   components: {BasketItem},
   props: {basket: Object},
+  methods: {
+    ohShit: function() {
+      this.basket.forEach((item) => {
+        console.log(item);
+      })
+    }
+  }
 }
 </script>
 

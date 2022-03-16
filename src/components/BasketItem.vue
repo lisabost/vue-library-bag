@@ -1,8 +1,8 @@
 <!-- Equivalent to Library Item -->
 <template>
-  <div class="card col-12 mt-2">
-    <component :is="typeOfItem" :item="item"></component>
-  </div>
+      <div class="card col-12 mt-2">
+        <component :is="typeOfItem" :item="item"></component>
+      </div>
 </template>
 
 <script>
