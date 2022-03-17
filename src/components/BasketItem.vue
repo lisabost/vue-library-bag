@@ -2,6 +2,9 @@
 <template>
       <div class="card col-12 mt-2">
         <component :is="typeOfItem" :item="item"></component>
+        <div class="card-footer">
+          <button class="btn btn-danger" @click="removeMe(item)">Remove</button>
+        </div>
       </div>
 </template>
 
@@ -14,6 +17,11 @@ export default {
   components: {LibraryBook, LibraryMovie, LibraryAlbum},
   props: {
     item: Object
+  },
+  methods: {
+    removeMe(item){
+      this.$emit('remove-me', item);
+    }
   },
   computed: {
     typeOfItem(){

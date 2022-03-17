@@ -1,10 +1,8 @@
 <template>
-  <div class="row">
     <div class="card-columns col-12 col-md-8">
       <library-item v-for="(item, i) in library" :key="i" :item="item" @add-to-basket="theItemEmitted => $emit('add-to-basket', theItemEmitted)"
                     :add-repair="item => {repairs.addItem(item); library.removeItem(item);}"></library-item>
     </div>
-  </div>
 </template>
 
 <script>

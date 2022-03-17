@@ -2,7 +2,7 @@
   <div id="app" class="container-fluid mt-3">
     <div class="row">
       <universal-library @add-to-basket="addToBasket"></universal-library>
-      <library-basket :basket="basket"></library-basket>
+      <library-basket :basket="basket" @remove-me="removeItemFromBasket"></library-basket>
     </div>
   </div>
 </template>
@@ -26,9 +26,13 @@ export default {
   },
   methods: {
     addToBasket: function(item){
-      this.basket.addItemToBasket(item);
-      // console.log(this.basket);
-      // console.log(this.basket[0]);
+      let present = this.basket.indexOf(item);
+      if (present < 0) {
+        this.basket.addItemToBasket(item);
+      }
+    },
+    removeItemFromBasket: function(item){
+      this.basket.removeItem(item);
     }
   },
 }
