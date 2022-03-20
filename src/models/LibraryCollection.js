@@ -5,7 +5,7 @@ export default function LibraryCollection(){
     // inherit functionality from arrays (ES6+)
     this.__proto__ = [];
 
-    this.addItem = function(item){
+    this.addItem = function(item, quantity){
         // this. push works here because LibraryCollection extends an array
         //this.push(new LibraryItem(item, (item) => this.removeItem(item)));
         //this.push(new LibraryItem(item, this.removeItem2));
@@ -15,8 +15,8 @@ export default function LibraryCollection(){
                     // anonymous function and is called from LibraryItem
                     collection.removeItem(this);
                 }
-            })(this) // this refers to the collection, because it's executed before the argument is passed
-        ));
+            })(this), // this refers to the collection, because it's executed before the argument is passed
+        quantity));
 
         // let six = (function(a){return a + 1})(5)
 

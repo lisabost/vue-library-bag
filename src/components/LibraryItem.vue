@@ -5,7 +5,7 @@
     </div>
     <component :is="typeOfItem" :item="item"></component>
     <div class="card-footer">
-      <button class="btn btn-outline-success m-2 disabled" v-if="item.isAvailable()">Available</button>
+      <button class="btn btn-outline-success m-2 disabled" v-if="item.isAvailable()">{{item.qty}} Available</button>
       <button class="btn btn-caution m-2" v-else @click="item.checkIn()">Check In</button>
       <button class="btn btn-danger m-2" @click="item.remove()">Remove</button>
       <button class="btn btn-secondary m-2" @click="addRepair(item)">Repair</button>

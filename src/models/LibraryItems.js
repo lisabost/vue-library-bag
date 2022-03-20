@@ -1,8 +1,10 @@
 // import {run} from "@babel/core/lib/transformation";
 
-function LibraryItem(media, removeMethod){
+function LibraryItem(media, removeMethod, quantity){
 
     const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
+
+    media.qty = quantity;
 
     media._status = STATUSES.CHECKED_IN;
 

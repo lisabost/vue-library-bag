@@ -17,12 +17,12 @@ export default {
   data() {
     return {
       library: new LibraryCollection()
-          .addItem(new Book('Seductive Interaction Design', 234))
-          .addItem(new Book('Learn Vue', 234))
-          .addItem(new Movie('The Muppets', 107))
-          .addItem(new Movie('Strange Brew', 97))
-          .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12))
-          .addItem(new Album('A Thousand Suns', 'Linkin Park', 15)),
+          .addItem(new Book('Seductive Interaction Design', 234), 2)
+          .addItem(new Book('Learn Vue', 234), 5)
+          .addItem(new Movie('The Muppets', 107),3)
+          .addItem(new Movie('Strange Brew', 97), 4)
+          .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12), 5)
+          .addItem(new Album('A Thousand Suns', 'Linkin Park', 15), 3),
       repairs: new LibraryCollection(),
     }
   },
