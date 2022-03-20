@@ -29,21 +29,14 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
-    createMap(name) {
-      let checkedOut = [...this.basket]
-      this.checkedOutItems.set(name, checkedOut)
-      return this.checkedOutItems;
-    },
     checkOutBasket(name) {
       this.isModalVisible = false;
-      this.createMap(name)
-      this.$emit('check-out-basket', this.basket)
-    }
+      this.$emit('check-out-basket', this.basket, name)
+    },
   },
   data() {
     return {
       isModalVisible: false,
-      checkedOutItems: new Map()
     }
   }
 }

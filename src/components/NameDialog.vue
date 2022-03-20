@@ -3,24 +3,29 @@
     <div class="modal-backdrop">
       <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
         <form>
-        <header class="modal-header" id="modalTitle">
-          <slot name="header">Check Out</slot>
-          <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
-        </header>
+          <header class="modal-header" id="modalTitle">
+            <slot name="header">
+              <nav class="navbar bg-dark text-light bag-bar">
+                <span class="navbar-brand">CHECK OUT!</span>
+                <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
+              </nav>
+            </slot>
+          </header>
 
-        <section class="modal-body mt-3" id="modalDescription">
-          <slot name="body">
-              <div class="form-group">
-                <label for="name">Enter Name</label>
-                <input type="text" class="form-control" id="name" v-model="user">
-              </div>
-          </slot>
-        </section>
+          <section class="modal-body mt-3" id="modalDescription">
+            <slot name="body">
+                <div class="form-group">
+                  <label for="name" class="required">Enter Name</label>
+                  <input type="text" class="form-control" id="name" v-model="user" autofocus>
+                </div>
+            </slot>
+          </section>
 
-        <footer class="modal-footer">
-          <slot name="footer"></slot>
-          <button type="button" class="btn btn-success" @click="checkOut" aria-label="Check out">Check Out</button>
-        </footer>
+          <footer class="modal-footer">
+            <slot name="footer">
+              <button type="button" class="btn btn-success" @click="checkOut" aria-label="Check out">CHECK OUT</button>
+            </slot>
+          </footer>
         </form>
       </div>
     </div>
@@ -42,7 +47,10 @@ export default {
       this.$emit('close');
     },
     checkOut(){
-      this.$emit('check-out-basket', this.user);
+      if (this.user !== '') {
+        this.$emit('check-out-basket', this.user);
+        this.user = '';
+      }
     }
   },
 };
@@ -63,8 +71,8 @@ export default {
 }
 
 .modal {
-  max-width: 350px;
-  max-height: 260px;
+  max-width: 400px;
+  max-height: 290px;
   background: #FFFFFF;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
@@ -96,7 +104,6 @@ export default {
 
 .modal-body {
   position: relative;
-  padding: 20px 10px;
 }
 
 .btn-close {
@@ -112,13 +119,6 @@ export default {
   background: transparent;
 }
 
-.btn-green {
-  color: white;
-  background: #4AAE9B;
-  border: 1px solid #4AAE9B;
-  border-radius: 2px;
-}
-
 .modal-fade-enter,
 .modal-fade-leave-to {
   opacity: 0;
@@ -128,4 +128,9 @@ export default {
 .modal-fade-leave-active {
   transition: opacity .5s ease;
 }
+
+.bag-bar {
+  width: 100%;
+}
+
 </style>

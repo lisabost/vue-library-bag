@@ -14,6 +14,8 @@ export default {
   name: "UniversalLibrary",
   components: {LibraryItem},
   props: {},
+  methods: {
+  },
   data() {
     return {
       library: new LibraryCollection()
