@@ -31,8 +31,8 @@ export default {
     },
     createMap(name) {
       let checkedOut = [...this.basket]
-      this.basketMap.set(name, checkedOut)
-      return this.basketMap;
+      this.checkedOutItems.set(name, checkedOut)
+      return this.checkedOutItems;
     },
     checkOutBasket(name) {
       this.isModalVisible = false;
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       isModalVisible: false,
-      basketMap: new Map()
+      checkedOutItems: new Map()
     }
   }
 }
