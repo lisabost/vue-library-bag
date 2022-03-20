@@ -2,7 +2,7 @@
   <div id="app" class="container-fluid mt-3">
     <div class="row">
       <universal-library @add-to-basket="addToBasket"></universal-library>
-      <library-basket :basket="basket" @remove-me="removeItemFromBasket"></library-basket>
+      <library-basket :basket="basket" @remove-me="removeItemFromBasket" @check-out-basket="checkOutBasket"></library-basket>
     </div>
   </div>
 </template>
@@ -35,6 +35,10 @@ export default {
     },
     removeItemFromBasket: function(item){
       this.basket.removeItem(item);
+    },
+    checkOutBasket: function (basket) {
+      console.log(basket);
+      basket.checkOutItems();
     }
   },
 }
