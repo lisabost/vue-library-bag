@@ -9,7 +9,8 @@ export default function BasketCollection() {
     //TODO: add checkout method
     arr.checkOutItems = function (){
         this.forEach((item) => {
-            item.checkOut();
+            // item.checkOut();
+            item.qty--;
         });
         arr.emptyBasket();
         return arr;
