@@ -12,7 +12,7 @@
         </header>
 
         <section class="modal-body" id="modalDescription">
-          <checked-out-item v-for="(item, i) in values" :key="i" :item="item" :user="userName"></checked-out-item>
+          <checked-out-item v-for="(item, i) in listOfCheckedOutItems" :key="i" :items="item"></checked-out-item>
         </section>
 
         <footer class="modal-footer">
@@ -32,34 +32,13 @@ import CheckedOutItem from "@/components/CheckedOutItem";
 export default {
   name: "CheckedOutItems",
   components: {CheckedOutItem},
-  props: {listOfCheckedOutItems: Map},
+  props: {listOfCheckedOutItems: Array},
   methods: {
     close() {
       this.$emit('close');
     },
   },
-  computed: {
-    values: function () {
-      const iterator1 = this.listOfCheckedOutItems[Symbol.iterator]();
-      let values = [];
-      for (const item of iterator1) {
-        //console.log('the map item is' + item);
-        let key = item[0];
-
-        values = this.listOfCheckedOutItems.get(key);
-        console.log(values);
-      }
-      return values;
-    },
-    userName: function (){
-      const iterator2 = this.listOfCheckedOutItems[Symbol.iterator]();
-      let key;
-      for (const item of iterator2) {
-        key = item[0];
-      }
-      return key;
-    }
-  }
+  computed: {}
 }
 </script>
 

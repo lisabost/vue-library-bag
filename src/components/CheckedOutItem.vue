@@ -2,8 +2,8 @@
   <div class="card col-12 mt-2">
 <!--    <component :is="typeOfItem" :item="item"></component>-->
     <div class="card-footer">
-      <p>Checked out by: {{user}}</p>
-      <p>{{item.title}}</p>
+      <p>Checked out by: {{items.user}} </p>
+      <p v-for="(item, i) in items" :key="i">{{item.title}}</p>
     </div>
   </div>
 </template>
@@ -17,8 +17,7 @@ export default {
   name: "CheckedOutItem",
   // components: {LibraryBook, LibraryMovie, LibraryAlbum},
   props: {
-    item: Object,
-    user: String,
+    items: Array,
   },
   computed: {
     typeOfItem(){

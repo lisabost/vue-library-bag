@@ -2,8 +2,11 @@
 export default function BasketCollection() {
     let arr = [];
 
+    this.user = '';
+
     arr.addItemToBasket = function(item){
         this.push(item);
+        return arr;
     }
 
     //TODO: add checkout method

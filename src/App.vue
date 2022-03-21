@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       basket: new BasketCollection(),
-      checkedOutItems: new Map(),
+      checkedOutItems: [],
       isModalVisible: false,
     }
   },
@@ -43,30 +43,16 @@ export default {
       this.basket.removeItem(item);
     },
     checkOutBasket: function (basket, name) {
-      this.checkedOutItems.set(name, [...basket])
+      let checkOutList = new BasketCollection();
+      checkOutList = [...basket];
+      checkOutList.user = name;
+      this.checkedOutItems.push(checkOutList);
       basket.checkOutItems();
+      console.log(this.checkedOutItems);
+      console.log('User who checked things out:' + checkOutList.user);
     },
     showModal() {
       this.isModalVisible = true;
-      //console.log('keyset is' + this.checkedOutItems.keys());
-
-      // const iterator1 = this.checkedOutItems[Symbol.iterator]();
-      //
-      // for (const item of iterator1) {
-      //   //console.log('the map item is' + item);
-      //   let key = item[0];
-      //   let values = this.checkedOutItems.get(key);
-      //   //console.log(values);
-      //   //TODO: populate checkOutItems popup with key and values
-      // }
-
-      // for (const [key, value] of this.checkedOutItems.keys()) {
-      //   console.log(`${key}: ${value}`);
-      // }
-      // for (let key in this.checkedOutItems.keys()){
-      //   console.log('key is' + key);
-      //   console.log('values are' + this.checkedOutItems.get(key));
-      // }
     },
     closeModal() {
       this.isModalVisible = false;
