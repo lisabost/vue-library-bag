@@ -1,36 +1,28 @@
-import {LibraryItem} from "@/models/LibraryItems";
-//import {LibraryItem} from "./LibraryItems";
+import Collection from "@/models/Collection";
 
-export default function LibraryCollection(){
-    // inherit functionality from arrays (ES6+)
-    this.__proto__ = [];
+export default function LibraryCollection() {
+    return new Collection(LibraryItem);
+}
 
-    this.addItem = function(item, quantity){
-        // this. push works here because LibraryCollection extends an array
-        //this.push(new LibraryItem(item, (item) => this.removeItem(item)));
-        //this.push(new LibraryItem(item, this.removeItem2));
-        this.push(new LibraryItem(item, (function(collection) {
-                return function () {
-                    // in here, this refers to the item, because it's an
-                    // anonymous function and is called from LibraryItem
-                    collection.removeItem(this);
-                }
-            })(this), // this refers to the collection, because it's executed before the argument is passed
-        quantity));
+/**
+ * Item with check-in and check-out ability
+ * @constructor
+ */
+function LibraryItem (quantity) {
 
-        // let six = (function(a){return a + 1})(5)
+    const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
 
-        // return "this" to utilize chaining
-        return this;
-    }
+    this.qty = quantity || 0;
 
-    this.removeItem = function(item){
-        this.splice(this.indexOf(item), 1);
-        return this;
-    }
-    this.removeItem2 = (item) => {
-        this.splice(this.indexOf(item), 1);
-        return this;
-    }
+    this._status = this._status ||STATUSES.CHECKED_IN;
 
+    this.checkIn = function () {
+        this._status = STATUSES.CHECKED_IN;
+    };
+    this.checkOut = function () {
+        this._status = STATUSES.CHECKED_OUT;
+    };
+    this.isAvailable = function () {
+        return this._status === STATUSES.CHECKED_IN;
+    };
 }

@@ -1,36 +1,29 @@
-// import {run} from "@babel/core/lib/transformation";
-
-function LibraryItem(media, removeMethod, quantity){
-
-    const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
-
-    media.qty = quantity;
-
-    media._status = STATUSES.CHECKED_IN;
-
-    // methods
-    media.checkIn = function (){
-        this._status = STATUSES.CHECKED_IN;
-    }
-
-    media.checkOut = function (){
-        this._status = STATUSES.CHECKED_OUT;
-
-    }
-
-    media.isAvailable = function(){
-        return this._status === STATUSES.CHECKED_IN;
-    }
-
-    // media.remove = function(){
-    //     return removeMethod(this);
-    // }
-
-    media.remove = removeMethod;
-
-    // return the decorated object
-    return media;
-}
+//
+// function LibraryItem(media, removeMethod, quantity){
+//
+//     const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
+//
+//     media.qty = quantity;
+//
+//     media._status = STATUSES.CHECKED_IN;
+//
+//     media.checkIn = function (){
+//         this._status = STATUSES.CHECKED_IN;
+//     }
+//
+//     media.checkOut = function (){
+//         this._status = STATUSES.CHECKED_OUT;
+//
+//     }
+//
+//     media.isAvailable = function(){
+//         return this._status === STATUSES.CHECKED_IN;
+//     }
+//
+//     media.remove = removeMethod;
+//
+//     return media;
+// }
 
 function Book(title, pages){
     //this.title = title || '';
@@ -67,4 +60,4 @@ class Album {
     }
 }
 
-export {LibraryItem, Book, Movie, Album}
+export {Book, Movie, Album}
