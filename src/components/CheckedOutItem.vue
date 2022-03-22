@@ -1,6 +1,6 @@
 <template>
-  <div class="card col-12 mt-2">
-    <div class="card-header">
+  <div class="card m-3 checked-out-item">
+    <div class="card-header bg-dark text-white">
       <p>Checked out by: {{items.user}} </p>
     </div>
     <div class="card-footer">
@@ -31,5 +31,8 @@ export default {
 </script>
 
 <style scoped>
-
+.checked-out-item {
+  max-width: 600px;
+  background-color: lightblue;
+}
 </style>

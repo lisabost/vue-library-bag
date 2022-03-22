@@ -1,11 +1,14 @@
 <!-- Equivalent to Library Item -->
 <template>
-      <div class="card col-12 mt-2">
-        <component :is="typeOfItem" :item="item"></component>
-        <div class="card-footer">
-          <button class="btn btn-danger" @click="removeMe(item)">Remove</button>
-        </div>
+  <div class="row">
+    <div class="card m-3 basket-item">
+      <div class="card-header"></div>
+      <component :is="typeOfItem" :item="item"></component>
+      <div class="card-footer">
+        <button class="btn btn-danger" @click="removeMe(item)">REMOVE</button>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -32,5 +35,8 @@ export default {
 </script>
 
 <style scoped>
-
+.basket-item {
+  width: 100%;
+  background-color: lightblue;
+}
 </style>

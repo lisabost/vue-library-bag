@@ -1,10 +1,10 @@
 <template>
-  <div class="card" :class="{'border-success' : item.isAvailable()}">
+  <div class="card library-item" :class="{'border-success' : item.isAvailable()}">
     <div class="card-header"></div>
     <component :is="typeOfItem" :item="item"></component>
     <div class="card-footer">
-        <button class="btn btn-outline-dark m-2 disabled" v-if="item.isAvailable()">{{item.qty}} Available</button>
-        <button class="btn btn-warning m-2" @click="addBasket(item)">Add to Basket</button>
+        <button class="btn btn-outline-dark bg-white m-2 disabled" v-if="item.isAvailable()">{{item.qty}} Available</button>
+        <button class="btn btn-warning m-2" @click="addBasket(item)">ADD TO BASKET</button>
     </div>
   </div>
 </template>
@@ -35,5 +35,7 @@ export default {
 </script>
 
 <style scoped>
-
+.library-item {
+  background-color: lightblue;
+}
 </style>

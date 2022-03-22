@@ -3,7 +3,7 @@
     <div class="row">
       <universal-library :library="library" @add-to-basket="addToBasket"></universal-library>
       <library-basket :basket="basket" @remove-me="removeItemFromBasket" @check-out-basket="checkOutBasket"></library-basket>
-      <button type="button" class="btn btn-success ml-3" @click="showModal">Show Checked Out Items</button>
+      <button type="button" class="btn btn-success btn-lg ml-3" @click="showModal">SHOW CHECKED OUT ITEMS</button>
       <checked-out-items v-show="isModalVisible" @close="closeModal" :listOfCheckedOutItems="checkedOutItems" @check-in-basket="checkInBasket" ></checked-out-items>
     </div>
   </div>
