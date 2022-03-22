@@ -1,15 +1,10 @@
 <template>
   <div class="card" :class="{'border-success' : item.isAvailable()}">
-    <div class="card-header">
-      {{item.title}}
-    </div>
+    <div class="card-header"></div>
     <component :is="typeOfItem" :item="item"></component>
     <div class="card-footer">
-      <button class="btn btn-outline-success m-2 disabled" v-if="item.isAvailable()">{{item.qty}} Available</button>
-      <button class="btn btn-caution m-2" v-else @click="item.checkIn()">Check In</button>
-      <button class="btn btn-danger m-2" @click="item.remove()">Remove</button>
-      <button class="btn btn-secondary m-2" @click="addRepair(item)">Repair</button>
-      <button class="btn btn-primary m-2" @click="addBasket(item)">Add to Basket</button>
+        <button class="btn btn-outline-dark m-2 disabled" v-if="item.isAvailable()">{{item.qty}} Available</button>
+        <button class="btn btn-warning m-2" @click="addBasket(item)">Add to Basket</button>
     </div>
   </div>
 </template>

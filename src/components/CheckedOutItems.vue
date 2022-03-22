@@ -12,7 +12,7 @@
         </header>
 
         <section class="modal-body" id="modalDescription">
-          <checked-out-item v-for="(item, i) in listOfCheckedOutItems" :key="i" :items="item"></checked-out-item>
+          <checked-out-item v-for="(item, i) in listOfCheckedOutItems" :key="i" :items="item" @check-in-basket="theItemEmitted => $emit('check-in-basket', theItemEmitted)"></checked-out-item>
         </section>
 
         <footer class="modal-footer">

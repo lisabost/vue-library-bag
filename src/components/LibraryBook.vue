@@ -1,5 +1,5 @@
 <template>
-  <div class="book bg-primary">
+  <div class="book bg-dark text-white p-2">
     <h3 class="card-title">{{ item.title }}</h3>
     <p class="card-text">Pages: {{ item.pages }}</p>
   </div>

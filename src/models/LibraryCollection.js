@@ -13,16 +13,17 @@ function LibraryItem (quantity) {
     const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
 
     this.qty = quantity || 0;
+    this.originalQty = quantity || 0;
 
     this._status = this._status ||STATUSES.CHECKED_IN;
 
     this.checkIn = function () {
-        this._status = STATUSES.CHECKED_IN;
+        this.qty++;
     };
     this.checkOut = function () {
         this._status = STATUSES.CHECKED_OUT;
     };
     this.isAvailable = function () {
-        return this._status === STATUSES.CHECKED_IN;
+        return this.qty > 0;
     };
 }

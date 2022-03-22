@@ -1,6 +1,11 @@
 // Equivalent to Library Collection
 import Collection from "@/models/Collection";
 
+/**
+ * Wrapper for collection with basket functionality
+ * @returns {*[]}
+ * @constructor
+ */
 export default function BasketCollection() {
     let bag = new Collection(BagItem);
     bag.user = '';

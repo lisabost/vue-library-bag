@@ -1,5 +1,5 @@
 <template>
-  <div class="album bg-primary">
+  <div class="album bg-dark text-white p-2">
     <h3 class="card-title">{{ item.title }}</h3>
     <div class="row">
       <div class="col">
