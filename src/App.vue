@@ -35,7 +35,7 @@ export default {
       if (item.qty !== 0){
         let present = this.basket.indexOf(item);
         if (present < 0) {
-          this.basket.addItemToBasket(item);
+          this.basket.addItem(item);
         }
       }
     },

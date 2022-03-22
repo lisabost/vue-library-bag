@@ -24,7 +24,8 @@ export default {
           .addItem(new Movie('The Muppets', 107), 6)
           .addItem(new Movie('Strange Brew', 97), 9)
           .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12), 4)
-          .addItem(new Album('A Thousand Suns', 'Linkin Park', 15), 2),
+          .addItem(new Album('A Thousand Suns', 'Linkin Park', 15), 2)
+          .addItem(new Movie('The Fellowship of the Rings', 178), 3),
       repairs: new LibraryCollection(),
     }
   },

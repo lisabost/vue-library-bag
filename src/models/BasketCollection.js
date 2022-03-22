@@ -1,32 +1,28 @@
 // Equivalent to Library Collection
+import Collection from "@/models/Collection";
+
 export default function BasketCollection() {
-    let arr = [];
+    let bag = new Collection(BagItem);
+    bag.user = '';
 
-    this.user = '';
-
-    arr.addItemToBasket = function(item){
-        this.push(item);
-        return arr;
-    }
-
-    //TODO: add checkout method
-    arr.checkOutItems = function (){
+    bag.checkOutItems = function (){
         this.forEach((item) => {
             item.qty--;
         });
-        arr.emptyBasket();
-        return arr;
+        bag.emptyBasket();
+        return bag;
     }
 
-    arr.removeItem = function (item){
-        arr.splice(arr.indexOf(item), 1);
-    }
-
-    arr.emptyBasket = function(){
-        while(arr.length > 0) {
-            arr.pop();
+    bag.emptyBasket = function(){
+        while(bag.length > 0) {
+            bag.pop();
         }
     }
-
-    return arr;
+    return bag;
 }
+
+function BagItem(){
+
+}
+
+
