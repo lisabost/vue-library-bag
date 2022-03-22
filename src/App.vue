@@ -62,11 +62,11 @@ export default {
     checkInBasket: function (basket) {
       for (let i = 0; i < this.checkedOutItems.length; i++) {
         let checkedOutList = this.checkedOutItems[i];
-        if(basket.user === checkedOutList.user) {
+        if(basket === checkedOutList) {
           for (let j = 0; j < checkedOutList.length; j++) {
             checkedOutList[j].checkIn();
           }
-          this.checkedOutItems.splice(this.checkedOutItems[i], 1);
+          this.checkedOutItems.splice(checkedOutList, 1);
         }
       }
     },
