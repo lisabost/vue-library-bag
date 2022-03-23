@@ -1,30 +1,3 @@
-//
-// function LibraryItem(media, removeMethod, quantity){
-//
-//     const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
-//
-//     media.qty = quantity;
-//
-//     media._status = STATUSES.CHECKED_IN;
-//
-//     media.checkIn = function (){
-//         this._status = STATUSES.CHECKED_IN;
-//     }
-//
-//     media.checkOut = function (){
-//         this._status = STATUSES.CHECKED_OUT;
-//
-//     }
-//
-//     media.isAvailable = function(){
-//         return this._status === STATUSES.CHECKED_IN;
-//     }
-//
-//     media.remove = removeMethod;
-//
-//     return media;
-// }
-
 function Book(title, pages){
     //this.title = title || '';
     this.title = title ?? ''; // will allow anything except null/undefined
@@ -32,8 +5,6 @@ function Book(title, pages){
     this.pages = parseInt(pages) || 0;
 }
 
-
-// or ES6 syntactic sugar (these are not really classes in the traditional sense)
 class Movie {
     title = '';
     runtime;
