@@ -60,15 +60,10 @@ export default {
       basket.checkOutItems();
     },
     checkInBasket: function (basket) {
-      for (let i = 0; i < this.checkedOutItems.length; i++) {
-        let checkedOutList = this.checkedOutItems[i];
-        if(basket === checkedOutList) {
-          for (let j = 0; j < checkedOutList.length; j++) {
-            checkedOutList[j].checkIn();
-          }
-          this.checkedOutItems.splice(checkedOutList, 1);
+        for (let j = 0; j < basket.length; j++) {
+          basket[j].checkIn();
         }
-      }
+        this.checkedOutItems.splice(this.checkedOutItems.indexOf(basket), 1);
     },
     showModal() {
       this.isModalVisible = true;
