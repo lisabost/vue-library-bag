@@ -15,9 +15,10 @@
 import LibraryBook from "@/components/LibraryBook";
 import LibraryMovie from "@/components/LibraryMovie";
 import LibraryAlbum from "@/components/LibraryAlbum";
+import LibrarySong from "@/components/LibrarySong";
 export default {
   name: "BasketItem",
-  components: {LibraryBook, LibraryMovie, LibraryAlbum},
+  components: {LibraryBook, LibraryMovie, LibraryAlbum, LibrarySong},
   props: {
     item: Object
   },

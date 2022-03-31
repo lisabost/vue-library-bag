@@ -1,7 +1,7 @@
 <template>
   <div class="movie bg-dark text-white p-2">
     <h3 class="card-title">{{ item.title }}</h3>
-    <p class="card-text">Runtime: {{ item.runtime }}</p>
+    <p class="card-text">Director: {{ item.director }}</p>
   </div>
 </template>
 

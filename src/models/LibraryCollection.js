@@ -1,7 +1,15 @@
 import Collection from "@/models/Collection";
 
 export default function LibraryCollection() {
-    return new Collection(LibraryItem);
+    let library = Collection(LibraryItem);
+
+    library.clearLibrary = function () {
+        while (library.length > 0) {
+            library.pop();
+        }
+    }
+
+    return library;
 }
 
 /**
@@ -12,8 +20,8 @@ function LibraryItem (quantity) {
 
     const STATUSES = {CHECKED_IN: 'in', CHECKED_OUT: 'out'}
 
-    this.qty = quantity || 0;
-    this.originalQty = quantity || 0;
+    this.qty = quantity || 5;
+    this.originalQty = quantity || 5;
 
     this._status = this._status ||STATUSES.CHECKED_IN;
 

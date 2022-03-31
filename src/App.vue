@@ -1,12 +1,20 @@
 <template>
-  <div id="app" class="container-fluid mt-3">
-    <div class="row">
-      <universal-library :library="library" @add-to-basket="addToBasket"></universal-library>
-      <library-basket :basket="basket" @remove-me="removeItemFromBasket" @check-out-basket="checkOutBasket"></library-basket>
-      <button type="button" class="btn btn-success btn-lg ml-3" @click="showModal">SHOW CHECKED OUT ITEMS</button>
-      <checked-out-items v-show="isModalVisible" @close="closeModal" :listOfCheckedOutItems="checkedOutItems" @check-in-basket="checkInBasket" ></checked-out-items>
+  <div id="app">
+    <nav class="navbar bg-dark text-light">
+      <span class="navbar-brand"><i class="fas fa-solid fa-book mx-2"></i> CHECK IT OUT!</span>
+      <itunes-search @search-finished="displayResults" @searching="currentlySearching"></itunes-search>
+    </nav>
+    <div  class="container-fluid mt-3">
+      <progress-bar :currently-working="working" ></progress-bar>
+      <div class="row">
+        <universal-library :library="library" @add-to-basket="addToBasket"></universal-library>
+        <library-basket :basket="basket" @remove-me="removeItemFromBasket" @check-out-basket="checkOutBasket"></library-basket>
+        <button type="button" class="btn btn-success btn-lg ml-3" @click="showModal">SHOW CHECKED OUT ITEMS</button>
+        <checked-out-items v-show="isModalVisible" @close="closeModal" :listOfCheckedOutItems="checkedOutItems" @check-in-basket="checkInBasket" ></checked-out-items>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -16,28 +24,33 @@ import BasketCollection from "@/models/BasketCollection";
 import LibraryBasket from "@/components/LibraryBasket";
 import CheckedOutItems from "@/components/CheckedOutItems";
 import LibraryCollection from "@/models/LibraryCollection";
-import {Album, Book, Movie} from "@/models/LibraryItems";
+import {Song, Book, Movie, MusicVideo, Podcast, TvShow, Software} from "@/models/LibraryItems";
+import ItunesSearch from "@/components/ItunesSearch";
+import ProgressBar from "@/components/ProgressBar";
 
 export default {
   name: 'App',
   components: {
+    ProgressBar,
+    ItunesSearch,
     CheckedOutItems,
     UniversalLibrary,
     LibraryBasket
   },
   data() {
     return {
-      library: new LibraryCollection()
-          .addItem(new Book('Seductive Interaction Design', 234), 5)
-          .addItem(new Book('Learn Vue', 234), 4)
-          .addItem(new Movie('The Muppets', 107), 6)
-          .addItem(new Movie('Strange Brew', 97), 9)
-          .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12), 4)
-          .addItem(new Album('A Thousand Suns', 'Linkin Park', 15), 2)
-          .addItem(new Movie('The Fellowship of the Rings', 178), 3),
+      library: new LibraryCollection(),
+          // .addItem(new Book('Seductive Interaction Design', 234), 5)
+          // .addItem(new Book('Learn Vue', 234), 4)
+          // .addItem(new Movie('The Muppets', 107), 6)
+          // .addItem(new Movie('Strange Brew', 97), 9)
+          // .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12), 4)
+          // .addItem(new Album('A Thousand Suns', 'Linkin Park', 15), 2)
+          // .addItem(new Movie('The Fellowship of the Rings', 178), 3),
       basket: new BasketCollection(),
       checkedOutItems: [],
       isModalVisible: false,
+      working: false
     }
   },
   methods: {
@@ -70,6 +83,35 @@ export default {
     },
     closeModal() {
       this.isModalVisible = false;
+    },
+    currentlySearching() {
+      this.working = true;
+    },
+    displayResults: function (searchResults) {
+      this.working = false;
+      if (this.library.length > 0) {
+        this.library.clearLibrary();
+      }
+      for(const i in searchResults){
+        // iTunes has movie(done), podcast(done), music(song - done), musicVideo(done), audiobook(done), shortFilm(included with movie?), tvShow(done), software(done), ebook(done)
+        if(searchResults[i].kind === 'song') {
+          this.library.addItem(new Song(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].collectionName));
+        } else if (searchResults[i].kind === 'ebook') {
+          this.library.addItem(new Book(searchResults[i].trackName, searchResults[i].artistName));
+        } else if (searchResults[i].wrapperType === 'audiobook') {
+          this.library.addItem(new Book(searchResults[i].collectionName, searchResults[i].artistName));
+        } else if (searchResults[i].kind === 'feature-movie') {
+          this.library.addItem(new Movie(searchResults[i].trackName, searchResults[i].artistName));
+        } else if (searchResults[i].kind === 'music-video') {
+          this.library.addItem(new MusicVideo(searchResults[i].trackName, searchResults[i].artistName));
+        } else if (searchResults[i].kind === 'podcast') {
+          this.library.addItem(new Podcast(searchResults[i].collectionName, searchResults[i].artistName));
+        } else if (searchResults[i].kind === 'tv-episode') {
+          this.library.addItem(new TvShow(searchResults[i].trackName, searchResults[i].collectionName));
+        } else if (searchResults[i].kind === 'software') {
+          this.library.addItem(new Software(searchResults[i].trackName, searchResults[i].primaryGenreName));
+        }
+      }
     },
   },
 }

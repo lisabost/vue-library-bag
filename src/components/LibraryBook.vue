@@ -1,7 +1,7 @@
 <template>
   <div class="book bg-dark text-white p-2">
     <h3 class="card-title">{{ item.title }}</h3>
-    <p class="card-text">Pages: {{ item.pages }}</p>
+    <p class="card-text">Author: {{ item.author }}</p>
   </div>
 </template>
 
