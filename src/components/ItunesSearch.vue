@@ -1,6 +1,19 @@
 <template>
     <form @submit.prevent="search" class="form-inline search-form">
-        <input type="text" class="form-control mr-sm-2" v-model="searchTerm" id="search-term" placeholder="Search iTunes">
+      <input type="text" class="form-control mr-sm-2" v-model="searchTerm" id="search-term" placeholder="Search iTunes">
+        <select id="inputState" class="form-control mr-sm-2">
+          <option selected>Choose media type</option>
+          <option>All</option>
+          <option>Audiobook</option>
+          <option>Ebook</option>
+          <option>Movie</option>
+          <option>Music</option>
+          <option>Music Video</option>
+          <option>Podcast</option>
+          <option>Short Film</option>
+          <option>Software</option>
+          <option>TV Show</option>
+        </select>
       <button type="submit" class="btn btn-outline-success my-2 my-sm-0" id="search-button">Search</button>
     </form>
 </template>
