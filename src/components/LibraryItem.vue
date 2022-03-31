@@ -1,6 +1,5 @@
 <template>
   <div class="card library-item" :class="{'border-success' : item.isAvailable()}">
-    <div class="card-header"></div>
     <component :is="typeOfItem" :item="item"></component>
     <div class="card-footer">
         <button class="btn btn-outline-dark bg-white m-2 disabled">{{item.qty}} Available</button>
@@ -17,9 +16,10 @@ import LibrarySong from "@/components/LibrarySong";
 import LibraryMusicVideo from "@/components/LibraryMusicVideo";
 import LibraryPodcast from "@/components/LibraryPodcast";
 import LibraryTvShow from "@/components/LibraryTvShow";
+import LibrarySoftware from "@/components/LibrarySoftware";
 export default {
   name: "LibraryItem",
-  components: {LibraryBook, LibraryMovie, LibraryAlbum, LibrarySong, LibraryMusicVideo, LibraryPodcast, LibraryTvShow},
+  components: {LibraryBook, LibraryMovie, LibraryAlbum, LibrarySong, LibraryMusicVideo, LibraryPodcast, LibraryTvShow, LibrarySoftware},
   props: {
     item: Object,
     addRepair: Function,

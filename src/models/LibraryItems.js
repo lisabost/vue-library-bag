@@ -1,19 +1,22 @@
-function Book(title, author){
+function Book(title, author, image){
     //this.title = title || '';
     this.title = title ?? ''; // will allow anything except null/undefined
-    // ?? is the coalesce operator
+    // ?? is the nullish coalescing operator
     this.author = author || '';
+    this.image = image || '';
 }
 
 class Movie {
     title = '';
     director;
+    image;
 
-    constructor(title, director){
+    constructor(title, director, image){
         if(title){
             this.title = title;
         }
         this.director = director || '';
+        this.image = image || '';
     }
 }
 
@@ -32,63 +35,72 @@ class Album {
 }
 
 class Song {
-    title = ''
-    artist = ''
-    album = ''
+    title = '';
+    artist;
+    album ;
 
-    constructor(title, artist, album) {
+    constructor(title, artist, album, image) {
         if(title) {
             this.title = title;
         }
         this.artist = artist;
-        this.album = album;
+        this.album = album || '';
+        this.image = image || '';
     }
 }
 
 class MusicVideo {
-    title = ''
-    artist = ''
+    title = '';
+    artist;
+    image;
 
-    constructor(title, artist) {
+    constructor(title, artist, image) {
         if(title) {
             this.title = title;
         }
-        this.artist = artist;
+        this.artist = artist || '';
+        this.image = image || '';
     }
 }
 
 class Podcast {
     title = ''
-    publisher = ''
+    publisher;
+    image;
 
-    constructor(title, publisher) {
+    constructor(title, publisher, image) {
         if(title) {
             this.title = title;
         }
-        this.publisher = publisher;
+        this.publisher = publisher || '';
+        this.image = image || '';
     }
 }
 
 class TvShow {
     episodeTitle = '';
-    showTitle = ''
+    showTitle;
+    image;
 
-    constructor(episode, show) {
+    constructor(episode, show, image) {
         if(episode) {
             this.episodeTitle = episode;
         }
-        this.showTitle = show;
+        this.showTitle = show || '';
+        this.image = image || '';
     }
 }
 
 class Software {
     appName = '';
     genre = '';
+    image = '';
 
-    constructor(name, genre) {
+    constructor(name, genre, image) {
         if(name) {
             this.appName = name;
             this.genre = genre;
+            this.image = image;
         }
     }
 

@@ -97,19 +97,19 @@ export default {
         if(searchResults[i].kind === 'song') {
           this.library.addItem(new Song(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].collectionName));
         } else if (searchResults[i].kind === 'ebook') {
-          this.library.addItem(new Book(searchResults[i].trackName, searchResults[i].artistName));
+          this.library.addItem(new Book(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].wrapperType === 'audiobook') {
-          this.library.addItem(new Book(searchResults[i].collectionName, searchResults[i].artistName));
+          this.library.addItem(new Book(searchResults[i].collectionName, searchResults[i].artistName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].kind === 'feature-movie') {
-          this.library.addItem(new Movie(searchResults[i].trackName, searchResults[i].artistName));
+          this.library.addItem(new Movie(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].kind === 'music-video') {
-          this.library.addItem(new MusicVideo(searchResults[i].trackName, searchResults[i].artistName));
+          this.library.addItem(new MusicVideo(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].kind === 'podcast') {
-          this.library.addItem(new Podcast(searchResults[i].collectionName, searchResults[i].artistName));
+          this.library.addItem(new Podcast(searchResults[i].collectionName, searchResults[i].artistName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].kind === 'tv-episode') {
-          this.library.addItem(new TvShow(searchResults[i].trackName, searchResults[i].collectionName));
+          this.library.addItem(new TvShow(searchResults[i].trackName, searchResults[i].collectionName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].kind === 'software') {
-          this.library.addItem(new Software(searchResults[i].trackName, searchResults[i].primaryGenreName));
+          this.library.addItem(new Software(searchResults[i].trackName, searchResults[i].primaryGenreName, searchResults[i].artworkUrl100));
         }
       }
     },

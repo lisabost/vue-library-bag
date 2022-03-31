@@ -27,6 +27,7 @@ export default {
           params: {
             term: this.searchTerm,
             limit: this.limit,
+            // media: ''
             // offset: this.limit * this.page
           }
         }
