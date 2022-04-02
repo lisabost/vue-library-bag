@@ -40,13 +40,6 @@ export default {
   data() {
     return {
       library: new LibraryCollection(),
-          // .addItem(new Book('Seductive Interaction Design', 234), 5)
-          // .addItem(new Book('Learn Vue', 234), 4)
-          // .addItem(new Movie('The Muppets', 107), 6)
-          // .addItem(new Movie('Strange Brew', 97), 9)
-          // .addItem(new Album('Siren Song of the Counter Culture', 'Rise Against', 12), 4)
-          // .addItem(new Album('A Thousand Suns', 'Linkin Park', 15), 2)
-          // .addItem(new Movie('The Fellowship of the Rings', 178), 3),
       basket: new BasketCollection(),
       checkedOutItems: [],
       isModalVisible: false,
@@ -95,7 +88,7 @@ export default {
       for(const i in searchResults){
         // iTunes has movie(done), podcast(done), music(song - done), musicVideo(done), audiobook(done), shortFilm(included with movie?), tvShow(done), software(done), ebook(done)
         if(searchResults[i].kind === 'song') {
-          this.library.addItem(new Song(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].collectionName));
+          this.library.addItem(new Song(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].collectionName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].kind === 'ebook') {
           this.library.addItem(new Book(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
         } else if (searchResults[i].wrapperType === 'audiobook') {
@@ -120,5 +113,7 @@ export default {
 <style>
 #app {
 
+
 }
+
 </style>

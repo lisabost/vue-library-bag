@@ -1,19 +1,11 @@
 <template>
     <form @submit.prevent="search" class="form-inline search-form">
       <input type="text" class="form-control mr-sm-2" v-model="searchTerm" id="search-term" placeholder="Search iTunes">
-        <select id="inputState" class="form-control mr-sm-2">
-          <option selected>Choose media type</option>
-          <option>All</option>
-          <option>Audiobook</option>
-          <option>Ebook</option>
-          <option>Movie</option>
-          <option>Music</option>
-          <option>Music Video</option>
-          <option>Podcast</option>
-          <option>Short Film</option>
-          <option>Software</option>
-          <option>TV Show</option>
+      <div>
+        <select id="media-type-selector" class="form-control mr-sm-2" v-model="mediaTypeSelected">
+          <option v-for="option in mediaOptions" :value="option.value" :key="option.value">{{option.name}}</option>
         </select>
+      </div>
       <button type="submit" class="btn btn-outline-success my-2 my-sm-0" id="search-button">Search</button>
     </form>
 </template>
@@ -27,7 +19,20 @@ export default {
       searchTerm: '',
       searchResults: [],
       limit: 20,
-      page: 0
+      page: 0,
+      mediaTypeSelected: 'all',
+      mediaOptions: [
+        {value: 'all', name: 'All'},
+        {value:'audiobook', name: 'Audiobook'},
+        {value:'ebook', name: 'E-book'},
+        {value:'movie', name: 'Movie'},
+        {value:'music', name: 'Music'},
+        {value:'musicVideo', name: 'Music Video'},
+        {value:'podcast', name: 'Podcast'},
+        {value:'shortFilm', name: 'Short Film'},
+        {value:'software', name: 'Software'},
+        {value:'tvShow', name: 'TV Show'},
+      ]
     }
   },
   methods: {
@@ -40,18 +45,15 @@ export default {
           params: {
             term: this.searchTerm,
             limit: this.limit,
-            // media: ''
+            media: this.mediaTypeSelected
             // offset: this.limit * this.page
           }
         }
         // execute ajax request using promises
         axios.get(url, config)
           .then(response => {
-            console.log('api response is', response);
-            console.log('response length is ' + response.data.results.length);
             if(response.data.results.length > 0) {
               this.searchResults = response.data.results;
-              console.log('the first search result is ' + this.searchResults[0].artistName);
             } else {
               this.searchResults = [];
             }
