@@ -1,9 +1,10 @@
 <template>
   <div>
-    <img :src="item.image" class="card-img-top card-topper-image" :alt="item.title">
+    <img :src="item.artworkUrl100" class="card-img-top card-topper-image" :alt="item.trackName">
     <div class="book bg-dark text-white p-2">
-      <h3 class="card-title">{{ item.title }}</h3>
-      <p class="card-text">Author: {{ item.author }}</p>
+      <h3 class="card-title" v-if="item.kind === 'ebook'">{{ item.trackName }}</h3>
+      <h3 class="card-title" v-if="item.wrapperType === 'audiobook'">{{ item.collectionName }}</h3>
+      <p class="card-text">Author: {{ item.artistName }}</p>
     </div>
   </div>
 </template>

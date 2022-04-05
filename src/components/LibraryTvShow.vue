@@ -1,9 +1,9 @@
 <template>
   <div>
-    <img :src="item.image" class="card-img-top card-topper-image" :alt="item.showTitle">
+    <img :src="item.artworkUrl100" class="card-img-top card-topper-image" :alt="item.artistName">
     <div class="song bg-dark text-white p-2">
-      <h3 class="card-title">{{ item.episodeTitle }}</h3>
-      <p class="card-text">Show: {{ item.showTitle }}</p>
+      <h3 class="card-title">{{ item.trackName }}</h3>
+      <p class="card-text">Show: {{ item.artistName }}</p>
     </div>
   </div>
 </template>

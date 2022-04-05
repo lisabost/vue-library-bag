@@ -2,10 +2,10 @@
   <div id="app">
     <nav class="navbar bg-dark text-light">
       <span class="navbar-brand"><i class="fas fa-solid fa-book mx-2"></i> CHECK IT OUT!</span>
-      <itunes-search @search-finished="displayResults" @searching="currentlySearching"></itunes-search>
+      <itunes-search @search-finished="displayResults" @searching="currentlySearching" @no-results-found="noResultsFound"></itunes-search>
     </nav>
     <div  class="container-fluid mt-3">
-      <progress-bar :currently-working="working" ></progress-bar>
+      <progress-bar :currently-working="working" :no-results="noResults"></progress-bar>
       <div class="row">
         <universal-library :library="library" @add-to-basket="addToBasket"></universal-library>
         <library-basket :basket="basket" @remove-me="removeItemFromBasket" @check-out-basket="checkOutBasket"></library-basket>
@@ -43,7 +43,8 @@ export default {
       basket: new BasketCollection(),
       checkedOutItems: [],
       isModalVisible: false,
-      working: false
+      working: false,
+      noResults: false
     }
   },
   methods: {
@@ -78,34 +79,41 @@ export default {
       this.isModalVisible = false;
     },
     currentlySearching() {
+      this.noResults = false;
       this.working = true;
+    },
+    noResultsFound() {
+      this.working = false;
+      this.noResults = true;
     },
     displayResults: function (searchResults) {
       this.working = false;
       if (this.library.length > 0) {
         this.library.clearLibrary();
       }
-      for(const i in searchResults){
-        // iTunes has movie(done), podcast(done), music(song - done), musicVideo(done), audiobook(done), shortFilm(included with movie?), tvShow(done), software(done), ebook(done)
-        if(searchResults[i].kind === 'song') {
-          this.library.addItem(new Song(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].collectionName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].kind === 'ebook') {
-          this.library.addItem(new Book(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].wrapperType === 'audiobook') {
-          this.library.addItem(new Book(searchResults[i].collectionName, searchResults[i].artistName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].kind === 'feature-movie') {
-          this.library.addItem(new Movie(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].kind === 'music-video') {
-          this.library.addItem(new MusicVideo(searchResults[i].trackName, searchResults[i].artistName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].kind === 'podcast') {
-          this.library.addItem(new Podcast(searchResults[i].collectionName, searchResults[i].artistName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].kind === 'tv-episode') {
-          this.library.addItem(new TvShow(searchResults[i].trackName, searchResults[i].collectionName, searchResults[i].artworkUrl100));
-        } else if (searchResults[i].kind === 'software') {
-          this.library.addItem(new Software(searchResults[i].trackName, searchResults[i].primaryGenreName, searchResults[i].artworkUrl100));
-        }
+      for (const i in searchResults) {
+        this.library.addItem(this.createLibraryObject(searchResults[i]));
       }
     },
+    createLibraryObject: function (item) {
+      if(item.kind === 'song') {
+        return Object.assign(new Song, item);
+      } else if (item.kind === 'ebook') {
+        return Object.assign(new Book, item);
+      } else if (item.wrapperType === 'audiobook') {
+        return Object.assign(new Book, item);
+      } else if (item.kind === 'feature-movie') {
+        return Object.assign(new Movie, item);
+      } else if (item.kind === 'music-video') {
+        return Object.assign(new MusicVideo, item);
+      } else if (item.kind === 'podcast') {
+        return Object.assign(new Podcast, item);
+      } else if (item.kind === 'tv-episode') {
+        return Object.assign(new TvShow, item);
+      } else if (item.kind === 'software') {
+        return Object.assign(new Software, item);
+      }
+    }
   },
 }
 </script>

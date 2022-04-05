@@ -1,14 +1,14 @@
 <template>
   <div>
-    <img :src="item.image" class="card-img-top card-topper-image" :alt="item.title">
+    <img :src="item.artworkUrl100" class="card-img-top card-topper-image" :alt="item.trackName">
     <div class="song bg-dark text-white p-2">
-      <h3 class="card-title">{{ item.title }}</h3>
+      <h3 class="card-title">{{ item.trackName }}</h3>
       <div class="row">
         <div class="col">
-          <p class="card-text">Artist: {{ item.artist }}</p>
+          <p class="card-text">Artist: {{ item.artistName }}</p>
         </div>
         <div class="col">
-          <p class="card-text">Album name: {{item.album}}</p>
+          <p class="card-text">Album name: {{item.collectionName}}</p>
         </div>
       </div>
     </div>

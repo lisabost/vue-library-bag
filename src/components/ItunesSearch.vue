@@ -46,7 +46,6 @@ export default {
             term: this.searchTerm,
             limit: this.limit,
             media: this.mediaTypeSelected
-            // offset: this.limit * this.page
           }
         }
         // execute ajax request using promises
@@ -56,6 +55,7 @@ export default {
               this.searchResults = response.data.results;
             } else {
               this.searchResults = [];
+              this.$emit('no-results-found');
             }
           })
           .catch(error => {
