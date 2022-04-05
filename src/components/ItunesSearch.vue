@@ -18,8 +18,7 @@ export default {
     return {
       searchTerm: '',
       searchResults: [],
-      limit: 20,
-      page: 0,
+      limit: 25,
       mediaTypeSelected: 'all',
       mediaOptions: [
         {value: 'all', name: 'All'},
