@@ -40,6 +40,7 @@ export default {
   methods: {
     checkForNewSearchTerm() {
       if(this.searchTerm !== this.lastSearchTerm) {
+        this.lastSearchTerm = this.searchTerm;
         return true;
       }
     },
