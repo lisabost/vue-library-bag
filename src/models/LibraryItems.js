@@ -86,6 +86,7 @@ class Song extends Media {
     constructor() {
         super();
     }
+
 }
 
 class MusicVideo extends Media{

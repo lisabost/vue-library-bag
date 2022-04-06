@@ -4,7 +4,10 @@
       <p>Checked out by: {{items.user}} </p>
     </div>
     <div class="card-footer">
-      <p v-for="(item, i) in items" :key="i">{{item.title}}</p>
+      <div v-for="(item, i) in items" :key="i">
+        <p v-if="item.wrapperType === 'audiobook'">{{item.collectionName}}</p>
+        <p v-else>{{item.trackName}}</p>
+      </div>
       <button class="btn btn-danger" @click="checkInItems(items)">Check In</button>
     </div>
   </div>

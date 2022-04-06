@@ -7,6 +7,7 @@
         </select>
       </div>
       <button type="submit" class="btn btn-outline-success my-2 my-sm-0" id="search-button">Search</button>
+      <button type="button" class="btn btn-outline-success my-2 my-sm-0 ml-2" id="load-more-button" @click="loadMoreResults">Load More</button>
     </form>
 </template>
 
@@ -31,7 +32,8 @@ export default {
         {value:'shortFilm', name: 'Short Film'},
         {value:'software', name: 'Software'},
         {value:'tvShow', name: 'TV Show'},
-      ]
+      ],
+      page: 0
     }
   },
   methods: {
@@ -44,7 +46,8 @@ export default {
           params: {
             term: this.searchTerm,
             limit: this.limit,
-            media: this.mediaTypeSelected
+            media: this.mediaTypeSelected,
+            offset: this.limit * this.page,
           }
         }
         // execute ajax request using promises
@@ -64,9 +67,12 @@ export default {
           .finally(() => {
             this.$emit('search-finished', this.searchResults);
             this.searching = false;
-            this.searchTerm = '';
           })
       }
+    },
+    loadMoreResults() {
+      this.page++;
+      this.search();
     }
   },
 }
