@@ -33,12 +33,24 @@ export default {
         {value:'software', name: 'Software'},
         {value:'tvShow', name: 'TV Show'},
       ],
-      page: 0
+      page: 0,
+      lastSearchTerm: ''
     }
   },
   methods: {
+    checkForNewSearchTerm() {
+      if(this.searchTerm !== this.lastSearchTerm) {
+        return true;
+      }
+    },
     search() {
       if(this.searchTerm) {
+        let isNewSearch = this.checkForNewSearchTerm();
+        if (isNewSearch) {
+          while (this.searchResults.length > 0){
+            this.searchResults.pop();
+          }
+        }
         this.$emit('searching');
         // build request arguments
         let url = 'https://itunes.apple.com/search?'
@@ -54,7 +66,9 @@ export default {
         axios.get(url, config)
           .then(response => {
             if(response.data.results.length > 0) {
-              this.searchResults = response.data.results;
+              for (const i in response.data.results) {
+                this.searchResults.push(response.data.results[i]);
+              }
             } else {
               this.searchResults = [];
               this.$emit('no-results-found');
